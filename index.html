@@ -1,0 +1,466 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Advanced Landslide Monitoring Portal</title>
+
+        <!-- External Dependencies -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <!-- Animated Background -->
+        <div class="background-animation">
+            <div class="floating-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Container -->
+        <div class="dashboard-grid">
+            <!-- Header Section -->
+            <header class="header-section">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <div class="logo-icon">
+                            <picture>
+                                <source srcset="Data/left.png" type="image/png">
+                                <img src="Data/left.png" alt="">
+                            </picture>
+                        </div>
+                        <div class="logo-text">
+                            <h1>Landslide Monitoring Portal</h1>
+                            <span class="subtitle">Real-time Risk Assessment & Analysis</span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </header>
+
+            <!-- Control Panel -->
+            <aside class="control-panel">
+                <div class="menu-container">
+                    <button class="main-menu-btn" id="mainMenuToggle">
+                        <div class="menu-btn-content">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Layer Control</span>
+                        </div>
+                        <i class="fas fa-chevron-down menu-chevron"></i>
+                    </button>
+
+                    <div class="menu-dropdown" id="mainDropdownContent">
+                        <!-- Boundary Layers -->
+                        <div class="menu-section">
+                            <button class="section-header" id="boundaryToggle">
+                                <div class="section-info">
+                                    <i class="fas fa-globe-americas section-icon"></i>
+                                    <span>Boundary Layers</span>
+                                </div>
+                                <i class="fas fa-chevron-down section-chevron"></i>
+                            </button>
+                            <div class="section-content" id="boundaryContent">
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-national">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">National Boundary</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-province">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Provincial Boundary</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-district">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">District Boundary</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-Tehsil">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Tehsil Boundary</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Strategic Roads -->
+                        <div class="menu-section">
+                            <button class="section-header" id="roadsToggle">
+                                <div class="section-info">
+                                    <i class="fas fa-road section-icon"></i>
+                                    <span>Strategic Roads</span>
+                                </div>
+                                <i class="fas fa-chevron-down section-chevron"></i>
+                            </button>
+                            <div class="section-content" id="roadsContent">
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-jaglot">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">JSR + KKH</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-rds">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">RDs</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-jsr-rds">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">JSR RDs</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-major-roads">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Major Roads</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-highways">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Highways</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Vulnerable Zones -->
+                        <div class="menu-section">
+                            <button class="section-header" id="vulnerableToggle">
+                                <div class="section-info">
+                                    <i class="fas fa-exclamation-triangle section-icon"></i>
+                                    <span>Vulnerable Zones</span>
+                                </div>
+                                <i class="fas fa-chevron-down section-chevron"></i>
+                            </button>
+                            <div class="section-content" id="vulnerableContent">
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-Risk">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Risk Assessment</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-Zonation">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Risk Zonation</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-senario3">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Frequent Landslide Zones</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Historical Data -->
+                        <div class="menu-section">
+                            <button class="section-header" id="historicalToggle">
+                                <div class="section-info">
+                                    <i class="fas fa-history section-icon"></i>
+                                    <span>Historical Data</span>
+                                </div>
+                                <i class="fas fa-chevron-down section-chevron"></i>
+                            </button>
+                            <div class="section-content" id="historicalContent">
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-inventory">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">10-year Inventory</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-glofass">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">P≥50 mm Events</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-projections">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Precipitation Projections</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-current-points">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Current Points</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-historical-points">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Historical Points</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-maytwentyfive_layer">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">May 2025</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggleMayFinal25">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Last Week</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-hotspot_layer">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Hotspot Points</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Landslide 2025 -->
+                        <div class="menu-section">
+                            <button class="section-header" id="landslide2025Toggle">
+                                <div class="section-info">
+                                    <i class="fas fa-mountain section-icon"></i>
+                                    <span>Landslide 2025</span>
+                                </div>
+                                <i class="fas fa-chevron-down section-chevron"></i>
+                            </button>
+                            <div class="section-content" id="landslide2025Content">
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-aug">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">August 2025</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-tourism">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Tourist Points</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- SIMEX 2025 -->
+                        <div class="menu-section">
+                            <button class="section-header" id="simexToggle">
+                                <div class="section-info">
+                                    <i class="fas fa-cogs section-icon"></i>
+                                    <span>SIMEX 2025</span>
+                                </div>
+                                <i class="fas fa-chevron-down section-chevron"></i>
+                            </button>
+                            <div class="section-content" id="simexContent">
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-senario2">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Scenario 1</span>
+                                </label>
+                                <label class="layer-checkbox">
+                                    <input type="checkbox" id="toggle-senario21">
+                                    <span class="checkmark"></span>
+                                    <span class="layer-name">Scenario 2</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exposure API Section
+                <div class="exposure-panel">
+                    <h3 class="panel-title">
+                        <i class="fas fa-cloud-sun"></i>
+                        DEW Exposure API
+                    </h3>
+                    <div class="exposure-table-container">
+                        <table class="exposure-table">
+                            <thead>
+                                <tr>
+                                    <th>Select</th>
+                                    <th>ID</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody id="exposure-selector">
+                                <tr>
+                                    <td><input type="checkbox" class="exposure-checkbox"></td>
+                                    <td><code>EXP001</code></td>
+                                    <td>Primary exposure zone</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="exposure-checkbox"></td>
+                                    <td><code>EXP002</code></td>
+                                    <td>Secondary risk area</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="exposure-checkbox"></td>
+                                    <td><code>EXP003</code></td>
+                                    <td>High vulnerability zone</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> -->
+
+                <!-- Layer Group Toggles -->
+
+
+                <!-- Sliders Container -->
+
+            </aside>
+
+            <!-- Main Map -->
+            <main class="map-container">
+                <div class="map-wrapper">
+                    <div id="map1" class="mapbox-map">
+                        <img src="Data/checklegendofpoints.png" id="inventory-legend" />
+                        <div class="controls">
+
+
+                        <div class="slider-container" id="slider-container">
+                            <div class="slider-header">
+                                <div class="slider-title">Layer Controls</div>
+                            </div>
+
+                            <div class="slider-group" id="projection-slider-group">
+                                <label class="slider-label">Projection Month:</label>
+                                <div class="slider-wrapper">
+                                    <input type="range" id="projection-slider" min="0" max="3" value="0" step="1">
+                                    <span class="slider-value" id="projection-slider-label">April 2025</span>
+                                </div>
+                            </div>
+
+                            <div class="slider-group" id="current-points-slider-group">
+                                <label class="slider-label">Current Year Points:</label>
+                                <div class="slider-wrapper">
+                                    <input type="range" id="current-points-slider" min="0" max="3" value="0" step="1">
+                                    <span class="slider-value" id="current-points-slider-label">April Points</span>
+                                </div>
+                            </div>
+
+                            <div class="slider-group" id="historical-points-slider-group">
+                                <label class="slider-label">Historical Points:</label>
+                                <div class="slider-wrapper">
+                                    <input type="range" id="historical-points-slider" min="0" max="11" value="0" step="1">
+                                    <span class="slider-value" id="historical-points-slider-label">2014</span>
+                                </div>
+                            </div>
+
+                            <div class="slider-controls">
+                                <button id="play-btn"><i>▶</i> Play All</button>
+                                <button id="pause-btn" disabled><i>⏸</i> Pause</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="map-overlay">
+                        <div class="map-controls">
+                            <button class="map-btn" title="Reset View">
+                                <i class="fas fa-home"></i>
+                            </button>
+                            <button class="map-btn" title="Fullscreen">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Analytics Panel -->
+        <section class="advisory-panel">
+                <div class="panel-header">
+        
+                    <video src="Data/Ghizer.mp4" controls autoplay loop muted></video>
+                </div>
+            </section>
+
+            <!-- 3D Map Panel -->
+            <section class="map3d-panel">
+
+                <div class="map3d-container">
+                    <div id="map2" class="mapbox-map"></div>
+
+                </div>
+            </section>
+
+            <!-- Advisory Panel -->
+        
+                <section class="analytics-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">
+                        <i class="fas fa-chart-area"></i>
+                        Analytics Dashboard
+                    </h2>
+                    <div class="chart-controls">
+                        <button class="chart-btn active" data-chart="landslide-frequency">Frequency</button>
+                        <button class="chart-btn" data-chart="risk-analysis">Risk</button>
+                        <button class="chart-btn" data-chart="temporal-data">Temporal</button>
+                        <button class="chart-btn" data-chart="severity-levels">Severity</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+
+                    <canvas id="chartCanvas" width="400" height="200"></canvas>
+                </div>
+        
+            </section>
+            <section class="vid">
+                <div class="panel-header">
+                
+                    <video src="Data/AI_LANDSLIDE.mp4" controls autoplay loop muted></video>
+                </div>
+            </section>
+<section class="vid1">
+    <div class="panel-header">
+        <div class="image-gallery">
+            <img src="Data/image.png" alt="" class="enlargeable-img">
+            <img src="Data/image2.png" alt="" class="enlargeable-img">
+            <img src="Data/image3.png" alt="" class="enlargeable-img">
+            <!-- Add more images as needed -->
+        </div>
+    </div>
+</section>
+
+<div id="enlargedView" class="enlarged-container">
+    <span class="close-btn">&times;</span>
+    <button class="nav-btn prev-btn">&lt;</button>
+    <img class="enlarged-image" id="enlargedImg">
+    <button class="nav-btn next-btn">&gt;</button>
+</div>
+
+            <!-- Animation Panel -->
+            <section class="animation-panel">
+
+
+                <iframe src="kkh_animation/index.html" frameborder="0"></iframe>
+
+            </section>
+        </div>
+
+        <!-- Loading Screen -->
+        <!-- <div class="loading-screen" id="loadingScreen">
+            <div class="loading-content">
+                <div class="loading-icon">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <h2>Initializing Landslide Portal</h2>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+                <p>Loading monitoring systems...</p>
+            </div>
+        </div> -->
+
+        <!-- External Scripts -->
+        <script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="map1.js"></script>
+    <script src="map2.js"></script>
+    <script src="controls.js"></script>
+    <script src="script.js"></script>
+    <script src="geojson/pointa_inventories.geojson"></script>
+    <script src="geojson/finallayerpmpm.geojson"></script>
+    <script src="geojson/tourism.geojson"></script>
+    <script src="geojson/Aug25.geojson"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Animate the camera along a path</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
+
+    <link rel="stylesheet" href="styles_animation.css">
+</head>
+<body>
+    <div id="map"></div>
+    <div id="overviewMap"></div> <!-- New div for the overview map -->
+    <div id="sliderContainer">
+        <label for="slider">Animation Speed:</label>
+        <input type="range" id="slider" min="1" max="10" step="1" value="5">
+        <div id="sliderLabels">
+            <div id="sliderLabels">
+                <span class="label" style="left: 25%;">200s</span>
+                <span class="label" style="left: 36.6%;">160s</span>
+                <span class="label" style="left: 53.3%;">120s</span>
+                <span class="label" style="left: 70%;">80s</span>
+                <span class="label" style="left: 86.6%;">40s</span>
+                <span class="label" style="left: 97.3%;">20s</span>
+            </div>
+            
+        </div>
+    </div>
+    <div id="controls">
+        <div class="control-button">
+            <button id="startButton">
+                <img src="play.png" alt="Start">
+                Start
+            </button>
+        </div>
+        <div class="control-button">
+            <button id="pauseButton">
+                <img src="pause.png" alt="Pause">
+                Pause
+            </button>
+        </div>
+        <div class="control-button">
+            <button id="stopButton">
+                <img src="stop.png" alt="Stop">
+                Stop
+            </button>
+        </div>
+        <div class="control-button">
+            <button id="backwardButton">
+                <img src="left-arrow.png" alt="Move Back">
+               Back
+            </button>
+        </div>
+        <div class="control-button">
+            <button id="forwardButton">
+                <img src="fast-forward.png" alt="Move Forward">
+                Forward
+            </button>
+        </div>
+    </div>
+    
+    <button id="toggleButton">KKH Zonation</button>
+    <button id="toggleButton1">inventories</button>
+
+    <div id="videoContainer">
+        <video id="video" controls loop autoplay muted>
+            <source src="KKH.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js"></script>
+    <script src="https://docs.mapbox.com/mapbox-gl-js/assets/routes.js"></script>
+    <script src="https://unpkg.com/@turf/turf@6/turf.min.js"></script>
+    <script src="script_animation.js"></script>
+    <script src="pointa_inventories.geojson"></script>
+
+    <script src="LANDSLIDE_INVENTORIES.geojson"></script>
+    <script src="very_high_mor.geojson"></script>
+    <script src="high_mor.geojson"></script>
+    <script src="low_mor.geojson"></script>
+    <script src="landslide_types.geojson"></script>
+    <script src="landslide_final_inventories.geojson"></script>
+
+</body>
+</html>
